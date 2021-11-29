@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Grid from "./gameboard/Grid";
+import Head from "./gameboard/Head";
 
 function App() {
+  const [check, setCheck] = useState(true);
+  const [highscore, setHighscore] = useState(0);
+  const [currentScore, setCurrentScore] = useState(0);
+  const handleButton = () => {
+    if (check) {
+      setCheck(false);
+    } else {
+      setCheck(true);
+    }
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Head
+        highscore={highscore}
+        currentScore={currentScore}
+        handleButton={handleButton}
+      />
+      <Grid
+        highscore={highscore}
+        currentScore={currentScore}
+        setCurrentScore={setCurrentScore}
+        setHighscore={setHighscore}
+        check={check}
+      />
     </div>
   );
 }
